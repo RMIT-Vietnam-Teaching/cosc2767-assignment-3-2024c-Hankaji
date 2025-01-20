@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tomcat-server
+  labels:
+    name: tomcat-server
+    app: tomcat-server
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: tomcat-server
+  template:
+    metadata:
+      labels:
+        name: tomcat-server
+        app: tomcat-server
+    spec:
+      containers:
+        - name: tomcat-server-image
+          image: hankaji/tc:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
